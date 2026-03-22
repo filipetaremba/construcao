@@ -124,3 +124,8 @@ _modules/*
 
 /results/
 /phpunit*.xml
+
+#node para tailwind
+node_modules/
+package.json
+package-lock.json
