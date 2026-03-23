@@ -10,3 +10,6 @@ $routes->get('/sobre', 'Home::sobre');
 $routes->get('/servicos', 'Home::servicos');
 $routes->get('/projetos', 'Home::projetos');
 $routes->get('/contacto', 'Home::contacto');
+
+
+$routes->get('/lang/(:segment)', 'Home::setLang/$1');
