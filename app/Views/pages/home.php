@@ -1,315 +1,287 @@
-<?php
-/**
- * home.php
- * Full Home page: Hero, Stats, Sobre, Serviços, Projetos, Contacto CTA
- */
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ConstrucaoMz — Construção de Excelência na Beira</title>
+  <meta name="description" content="Empresa líder em construção residencial e comercial na Beira, Moçambique.">
 
-$copy = [
-    'pt' => [
-        /* HERO */
-        'hero_tag'       => 'Beira · Moçambique',
-        'hero_h1_a'      => 'CONSTRUÍMOS',
-        'hero_h1_b'      => 'O SEU FUTURO',
-        'hero_sub'       => 'Construção residencial e comercial com qualidade, rigor e compromisso. Na Beira e em todo o país.',
-        'hero_cta1'      => 'Ver Serviços',
-        'hero_cta2'      => 'Os Nossos Projetos',
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
-        /* STATS */
-        'stat1_num'      => '12+',
-        'stat1_label'    => 'Anos de Experiência',
-        'stat2_num'      => '200+',
-        'stat2_label'    => 'Projectos Concluídos',
-        'stat3_num'      => '98%',
-        'stat3_label'    => 'Clientes Satisfeitos',
-        'stat4_num'      => '50+',
-        'stat4_label'    => 'Profissionais Certificados',
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 
-        /* SOBRE */
-        'sobre_tag'      => 'Sobre Nós',
-        'sobre_h2'       => 'Mais de uma Década a Construir Confiança',
-        'sobre_p1'       => 'A ConstrucaoMz nasceu na Beira com uma missão clara: entregar obras de excelência, no prazo e dentro do orçamento. Da fundação ao acabamento, controlamos cada fase da construção com rigor técnico e transparência total.',
-        'sobre_p2'       => 'A nossa equipa de engenheiros, arquitectos e mestres de obras experientes garante que cada projecto — seja uma moradia familiar, um edifício comercial ou uma unidade industrial — supera as expectativas do cliente.',
-        'sobre_cta'      => 'Conhecer a Equipa',
-        'sobre_badge1'   => 'Licenciados',
-        'sobre_badge2'   => 'Certificados',
-        'sobre_badge3'   => 'Garantia Total',
+  <!-- Fonts: Bebas Neue display + DM Sans body -->
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-        /* SERVIÇOS */
-        'servicos_tag'   => 'O Que Fazemos',
-        'servicos_h2'    => 'Serviços de Construção Completos',
-        'servicos_sub'   => 'Da concepção ao acabamento, oferecemos soluções integradas para todos os tipos de obra.',
-        'servicos'       => [
-            ['icon' => '🏠', 'title' => 'Construção Residencial',   'desc' => 'Moradias, apartamentos e condomínios construídos com materiais de primeira qualidade e acabamentos impecáveis.'],
-            ['icon' => '🏢', 'title' => 'Construção Comercial',      'desc' => 'Escritórios, centros comerciais e espaços de negócio desenhados para maximizar funcionalidade e imagem.'],
-            ['icon' => '🏭', 'title' => 'Construção Industrial',     'desc' => 'Armazéns, fábricas e infraestruturas industriais robustas, pensadas para eficiência e durabilidade.'],
-            ['icon' => '🔨', 'title' => 'Remodelações',              'desc' => 'Transformamos espaços existentes. Desde pequenas obras até à renovação completa de edifícios.'],
-            ['icon' => '📐', 'title' => 'Projecto & Consultoria',    'desc' => 'Apoio técnico desde o levantamento do terreno até à memória descritiva. Arquitectura e engenharia integradas.'],
-            ['icon' => '🛡️', 'title' => 'Manutenção de Edifícios',  'desc' => 'Contratos de manutenção preventiva e correctiva para preservar o valor e a segurança da sua propriedade.'],
-        ],
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:  '#0B1D3A',
+            gold:  '#E8A020',
+            'gold-light': '#F5B840',
+            mist:  '#F7F6F3',
+          },
+          fontFamily: {
+            display: ['"Bebas Neue"', 'sans-serif'],
+            body:    ['"DM Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
 
-        /* PROJETOS */
-        'projetos_tag'   => 'Portfólio',
-        'projetos_h2'    => 'Obras que Falam por Si',
-        'projetos_sub'   => 'Selecção de projectos entregues na Beira e em Moçambique.',
-        'projetos_cta'   => 'Ver Todos os Projetos',
-        'projetos'       => [
-            ['cat' => 'Residencial', 'title' => 'Residências Buzi',       'loc' => 'Beira, Sofala',      'year' => '2023', 'color' => '#1A3A70'],
-            ['cat' => 'Comercial',   'title' => 'Complexo Ponta Gêa',     'loc' => 'Beira, Sofala',      'year' => '2022', 'color' => '#0D1F4E'],
-            ['cat' => 'Industrial',  'title' => 'Armazém Porto da Beira',  'loc' => 'Porto, Beira',       'year' => '2023', 'color' => '#2D4A80'],
-            ['cat' => 'Comercial',   'title' => 'Hotel Costa do Sol',      'loc' => 'Beira, Sofala',      'year' => '2021', 'color' => '#142655'],
-        ],
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'DM Sans', sans-serif; background: #fff; color: #111; }
 
-        /* CTA SECTION */
-        'cta_h2'         => 'Pronto para Começar o Seu Projecto?',
-        'cta_sub'        => 'Fale com a nossa equipa hoje. Orçamento sem compromisso na Beira e arredores.',
-        'cta_btn1'       => 'Pedir Orçamento',
-        'cta_btn2'       => 'Ligar Agora',
+    /* ── Scroll reveal ── */
+    .sr { opacity: 0; transform: translateY(24px); transition: opacity .65s ease, transform .65s ease; }
+    .sr.in { opacity: 1; transform: none; }
+    .sr-delay-1 { transition-delay: .1s; }
+    .sr-delay-2 { transition-delay: .2s; }
+    .sr-delay-3 { transition-delay: .3s; }
+    .sr-delay-4 { transition-delay: .4s; }
 
-        /* CONTACTO STRIP */
-        'cont_morada'    => 'Beira, Sofala, Moçambique',
-        'cont_tel'       => '+258 84 000 0000',
-        'cont_email'     => 'geral@construcaomz.co.mz',
-        'cont_horario'   => 'Seg–Sex  7h–18h',
-    ],
-    'en' => [
-        'hero_tag'       => 'Beira · Mozambique',
-        'hero_h1_a'      => 'WE BUILD',
-        'hero_h1_b'      => 'YOUR FUTURE',
-        'hero_sub'       => 'Residential and commercial construction with quality, rigour, and commitment. In Beira and across the country.',
-        'hero_cta1'      => 'Our Services',
-        'hero_cta2'      => 'View Projects',
-        'stat1_num'      => '12+',
-        'stat1_label'    => 'Years of Experience',
-        'stat2_num'      => '200+',
-        'stat2_label'    => 'Completed Projects',
-        'stat3_num'      => '98%',
-        'stat3_label'    => 'Satisfied Clients',
-        'stat4_num'      => '50+',
-        'stat4_label'    => 'Certified Professionals',
-        'sobre_tag'      => 'About Us',
-        'sobre_h2'       => 'Over a Decade Building Trust',
-        'sobre_p1'       => 'ConstrucaoMz was founded in Beira with a clear mission: to deliver excellent construction, on time and within budget. From foundation to finish, we control every phase with technical rigour and full transparency.',
-        'sobre_p2'       => 'Our team of engineers, architects, and experienced site managers ensures that every project — residential, commercial or industrial — exceeds client expectations.',
-        'sobre_cta'      => 'Meet the Team',
-        'sobre_badge1'   => 'Licensed',
-        'sobre_badge2'   => 'Certified',
-        'sobre_badge3'   => 'Full Warranty',
-        'servicos_tag'   => 'What We Do',
-        'servicos_h2'    => 'Complete Construction Services',
-        'servicos_sub'   => 'From concept to completion, integrated solutions for every type of project.',
-        'servicos'       => [
-            ['icon' => '🏠', 'title' => 'Residential Construction', 'desc' => 'Houses, apartments and condominiums built with premium materials and impeccable finishes.'],
-            ['icon' => '🏢', 'title' => 'Commercial Construction',  'desc' => 'Offices, retail centres and business spaces designed for maximum functionality and image.'],
-            ['icon' => '🏭', 'title' => 'Industrial Construction',  'desc' => 'Warehouses, factories and industrial infrastructure built for efficiency and durability.'],
-            ['icon' => '🔨', 'title' => 'Renovations',              'desc' => 'We transform existing spaces, from minor works to complete building refurbishment.'],
-            ['icon' => '📐', 'title' => 'Design & Consultancy',     'desc' => 'Technical support from site survey to specifications. Integrated architecture and engineering.'],
-            ['icon' => '🛡️', 'title' => 'Building Maintenance',    'desc' => 'Preventive and corrective maintenance contracts to preserve the value and safety of your property.'],
-        ],
-        'projetos_tag'   => 'Portfolio',
-        'projetos_h2'    => 'Works That Speak for Themselves',
-        'projetos_sub'   => 'Selection of projects delivered in Beira and across Mozambique.',
-        'projetos_cta'   => 'View All Projects',
-        'projetos'       => [
-            ['cat' => 'Residential', 'title' => 'Buzi Residences',      'loc' => 'Beira, Sofala', 'year' => '2023', 'color' => '#1A3A70'],
-            ['cat' => 'Commercial',  'title' => 'Ponta Gêa Complex',    'loc' => 'Beira, Sofala', 'year' => '2022', 'color' => '#0D1F4E'],
-            ['cat' => 'Industrial',  'title' => 'Port of Beira Warehouse','loc' => 'Port, Beira',  'year' => '2023', 'color' => '#2D4A80'],
-            ['cat' => 'Commercial',  'title' => 'Costa do Sol Hotel',    'loc' => 'Beira, Sofala', 'year' => '2021', 'color' => '#142655'],
-        ],
-        'cta_h2'         => 'Ready to Start Your Project?',
-        'cta_sub'        => 'Talk to our team today. Free quote in Beira and surroundings.',
-        'cta_btn1'       => 'Request a Quote',
-        'cta_btn2'       => 'Call Now',
-        'cont_morada'    => 'Beira, Sofala, Mozambique',
-        'cont_tel'       => '+258 84 000 0000',
-        'cont_email'     => 'geral@construcaomz.co.mz',
-        'cont_horario'   => 'Mon–Fri  7am–6pm',
-    ],
-];
-$t = $copy[$lang ?? 'pt'];
-?>
+    /* ── Navbar ── */
+    #nav { transition: background .3s, box-shadow .3s, padding .3s; }
+    #nav.scrolled { background: rgba(11,29,58,.97); backdrop-filter: blur(10px); box-shadow: 0 2px 20px rgba(0,0,0,.3); }
+    .nav-a { position: relative; }
+    .nav-a::after { content:''; position:absolute; bottom:-3px; left:0; width:0; height:2px; background:#E8A020; transition: width .25s; }
+    .nav-a:hover::after { width:100%; }
 
-<!-- ===================================================
-     1. HERO
-=================================================== -->
-<section id="home" class="relative min-h-screen flex items-center overflow-hidden bg-primary">
+    /* ── Hero ── */
+    #hero { position: relative; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+    #hero-bg {
+      position: absolute; inset: 0;
+      background: url('https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1800&q=80&auto=format&fit=crop') center/cover no-repeat;
+    }
+    #hero-bg::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(to right, rgba(11,29,58,.88) 55%, rgba(11,29,58,.4) 100%);
+    }
 
-  <!-- Background: construction site atmosphere -->
-  <div class="absolute inset-0 z-0">
-    <!-- Geometric grid overlay -->
-    <div class="absolute inset-0" style="background-image: linear-gradient(rgba(245,168,0,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(245,168,0,0.05) 1px, transparent 1px); background-size: 60px 60px;"></div>
-    <!-- Diagonal dark overlay -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary via-primary/95 to-secondary/80"></div>
-    <!-- Accent glow -->
-    <div class="absolute bottom-0 right-0 w-[600px] h-[600px] rounded-full bg-accent/10 blur-3xl"></div>
-    <div class="absolute top-20 left-0 w-[300px] h-[300px] rounded-full bg-accent/5 blur-2xl"></div>
+    /* ── Section label ── */
+    .sec-label {
+      display: inline-flex; align-items: center; gap: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: .7rem; font-weight: 600;
+      letter-spacing: .18em; text-transform: uppercase; color: #E8A020;
+      margin-bottom: 1rem;
+    }
+    .sec-label::before { content:''; display:block; width:28px; height:2px; background:#E8A020; }
+
+    /* ── Gold bar left ── */
+    .gold-bar { border-left: 3px solid #E8A020; padding-left: 1.25rem; }
+
+    /* ── Service card ── */
+    .svc-card { border-bottom: 2px solid transparent; transition: border-color .25s, transform .25s; }
+    .svc-card:hover { border-color: #E8A020; transform: translateY(-3px); }
+
+    /* ── Project card ── */
+    .proj-card img { transition: transform .5s ease; }
+    .proj-card:hover img { transform: scale(1.04); }
+    .proj-card .overlay { background: linear-gradient(to top, rgba(11,29,58,.85) 0%, transparent 60%); }
+
+    /* ── Form inputs ── */
+    .field {
+      width: 100%; background: transparent;
+      border: none; border-bottom: 1px solid rgba(255,255,255,.25);
+      color: #fff; font-family: 'DM Sans', sans-serif; font-size: .9rem;
+      padding: .75rem 0; outline: none;
+      transition: border-color .25s;
+    }
+    .field::placeholder { color: rgba(255,255,255,.4); }
+    .field:focus { border-color: #E8A020; }
+    select.field option { background: #0B1D3A; color: #fff; }
+
+    /* ── Btn ── */
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #E8A020; color: #0B1D3A;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .85rem 2.2rem; border: none; cursor: pointer;
+      transition: background .2s, transform .15s;
+    }
+    .btn-gold:hover { background: #F5B840; transform: translateY(-1px); }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: transparent; color: #fff;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
+      font-size: .82rem; letter-spacing: .1em; text-transform: uppercase;
+      padding: .85rem 2.2rem; border: 1.5px solid rgba(255,255,255,.35);
+      cursor: pointer; transition: border-color .2s, color .2s;
+    }
+    .btn-outline:hover { border-color: #E8A020; color: #E8A020; }
+
+    /* ── Toast ── */
+    #toast {
+      position: fixed; bottom: 2rem; right: 2rem; z-index: 9999;
+      background: #0B1D3A; color: #fff; border-left: 3px solid #E8A020;
+      padding: 1rem 1.5rem; font-size: .85rem; font-family: 'DM Sans', sans-serif;
+      opacity: 0; transform: translateY(10px);
+      transition: opacity .3s, transform .3s; pointer-events: none;
+    }
+    #toast.show { opacity: 1; transform: none; }
+
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: #0B1D3A; }
+    ::-webkit-scrollbar-thumb { background: #E8A020; }
+  </style>
+</head>
+<body>
+
+<!-- ════════════ NAVBAR ════════════ -->
+<nav id="nav" class="fixed top-0 left-0 w-full z-50 py-5 px-8">
+  <div class="max-w-6xl mx-auto flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="flex items-center gap-2">
+      <img src="/assets/images/logo.png" alt="ConstrucaoMz" class="h-9 w-auto"
+           onerror="this.style.display='none';document.getElementById('tl').style.display='block'">
+      <span id="tl" class="hidden font-display text-white text-2xl tracking-wider">
+        <span class="text-gold">C</span>ONSTRUCAO<span class="text-gold">MZ</span>
+      </span>
+    </a>
+
+    <!-- Desktop links -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#hero"     class="nav-a text-white/80 hover:text-white text-sm font-medium transition">HOME</a>
+      <a href="#sobre"    class="nav-a text-white/80 hover:text-white text-sm font-medium transition">QUEM SOMOS</a>
+      <a href="#servicos" class="nav-a text-white/80 hover:text-white text-sm font-medium transition">SERVIÇOS</a>
+      <a href="#projetos" class="nav-a text-white/80 hover:text-white text-sm font-medium transition">PROJETOS</a>
+      <a href="#contacto" class="btn-gold text-xs py-2.5 px-5">FALE CONNOSCO</a>
+    </div>
+
+    <!-- Mobile toggle -->
+    <button id="mbtn" class="md:hidden text-white" aria-label="Menu">
+      <i data-lucide="menu" class="w-6 h-6" id="mico-open"></i>
+      <i data-lucide="x"    class="w-6 h-6 hidden" id="mico-close"></i>
+    </button>
   </div>
 
-  <!-- Large background blueprint number -->
-  <div class="absolute right-0 top-1/2 -translate-y-1/2 text-[28vw] font-display font-black text-white/[0.03] leading-none select-none pointer-events-none" aria-hidden="true">MZ</div>
+  <!-- Mobile menu -->
+  <div id="mmenu" class="hidden md:hidden mt-4 bg-navy/98 border-t border-white/10 px-8 py-6 flex flex-col gap-4">
+    <a href="#hero"     class="text-white/80 text-sm font-medium uppercase tracking-widest">Home</a>
+    <a href="#sobre"    class="text-white/80 text-sm font-medium uppercase tracking-widest">Quem Somos</a>
+    <a href="#servicos" class="text-white/80 text-sm font-medium uppercase tracking-widest">Serviços</a>
+    <a href="#projetos" class="text-white/80 text-sm font-medium uppercase tracking-widest">Projetos</a>
+    <a href="#contacto" class="btn-gold self-start">Fale Connosco</a>
+  </div>
+</nav>
 
-  <div class="relative z-10 max-w-7xl mx-auto px-6 pt-32 pb-20 w-full">
-    <div class="grid lg:grid-cols-2 gap-12 items-center">
+
+<!-- ════════════ HERO ════════════ -->
+<section id="hero">
+  <div id="hero-bg"></div>
+  <div class="relative z-10 max-w-6xl mx-auto px-8 w-full pt-20">
+    <div class="max-w-2xl">
+      <p class="sec-label mb-4">Beira · Moçambique</p>
+      <h1 class="font-display text-white leading-[.92] mb-6" style="font-size:clamp(3.8rem,8vw,7.5rem)">
+        SOMOS<br>
+        ESPECIALIZADOS<br>
+        EM <span class="text-gold">CONSTRUÇÃO</span>
+      </h1>
+      <p class="text-white/65 text-base leading-relaxed mb-10 max-w-md font-light">
+        Construção residencial e comercial com qualidade, rigor e compromisso na Beira e em todo Moçambique.
+      </p>
+      <div class="flex flex-wrap gap-4">
+        <a href="#servicos" class="btn-gold">
+          Os Nossos Serviços
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+        <a href="#contacto" class="btn-outline">Pedir Orçamento</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom stats strip -->
+  <div class="absolute bottom-0 left-0 right-0 z-10">
+    <div class="max-w-6xl mx-auto px-8">
+      <div class="grid grid-cols-3 md:grid-cols-3 bg-navy/80 backdrop-blur-sm border-t border-white/10 divide-x divide-white/10">
+        <div class="px-8 py-5 text-center">
+          <div class="font-display text-gold text-4xl">12+</div>
+          <div class="text-white/55 text-xs mt-1 uppercase tracking-widest">Anos</div>
+        </div>
+        <div class="px-8 py-5 text-center">
+          <div class="font-display text-gold text-4xl">200+</div>
+          <div class="text-white/55 text-xs mt-1 uppercase tracking-widest">Projectos</div>
+        </div>
+        <div class="px-8 py-5 text-center">
+          <div class="font-display text-gold text-4xl">98%</div>
+          <div class="text-white/55 text-xs mt-1 uppercase tracking-widest">Satisfação</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════ SOBRE NÓS ════════════ -->
+<section id="sobre" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-8">
+    <div class="grid md:grid-cols-2 gap-16 items-center">
+
+      <!-- Image -->
+      <div class="sr relative">
+        <div class="overflow-hidden" style="aspect-ratio:4/3">
+          <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=900&q=80&auto=format&fit=crop"
+               alt="Equipa em obra"
+               class="w-full h-full object-cover"
+               loading="lazy">
+        </div>
+        <!-- Gold corner -->
+        <div class="absolute -bottom-4 -right-4 w-24 h-24 bg-gold flex items-center justify-center">
+          <div class="text-center text-navy">
+            <div class="font-display text-3xl leading-none">12+</div>
+            <div class="text-[10px] font-semibold uppercase tracking-widest">Anos</div>
+          </div>
+        </div>
+      </div>
 
       <!-- Text -->
-      <div>
-        <!-- Tag -->
-        <div class="inline-flex items-center gap-2 bg-accent/15 border border-accent/30 text-accent text-xs font-semibold uppercase tracking-[0.2em] px-4 py-2 mb-8">
-          <span class="w-2 h-2 rounded-full bg-accent animate-pulse"></span>
-          <?= htmlspecialchars($t['hero_tag']) ?>
-        </div>
-
-        <!-- Headline -->
-        <h1 class="font-display font-black text-white leading-[0.92] mb-6" style="font-size: clamp(3.5rem, 8vw, 7rem);">
-          <?= htmlspecialchars($t['hero_h1_a']) ?><br>
-          <span class="text-accent"><?= htmlspecialchars($t['hero_h1_b']) ?></span>
-        </h1>
-
-        <!-- Divider -->
-        <div class="flex items-center gap-4 mb-6">
-          <span class="gold-divider"></span>
-          <span class="w-3 h-3 bg-accent transform rotate-45 flex-shrink-0"></span>
-          <span class="gold-divider"></span>
-        </div>
-
-        <!-- Sub -->
-        <p class="font-body text-white/70 text-lg leading-relaxed mb-10 max-w-lg">
-          <?= htmlspecialchars($t['hero_sub']) ?>
-        </p>
-
-        <!-- CTAs -->
-        <div class="flex flex-wrap gap-4">
-          <a href="/servicos"
-             class="inline-flex items-center gap-3 bg-accent text-primary font-display font-bold text-sm uppercase tracking-widest px-8 py-4 hover:bg-accent-dark transition-all duration-200 group">
-            <?= htmlspecialchars($t['hero_cta1']) ?>
-            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-          <a href="/projetos"
-             class="inline-flex items-center gap-3 border-2 border-white/30 text-white font-display font-bold text-sm uppercase tracking-widest px-8 py-4 hover:border-accent hover:text-accent transition-all duration-200 group">
-            <?= htmlspecialchars($t['hero_cta2']) ?>
-            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-
-      <!-- Right: stacked feature cards -->
-      <div class="hidden lg:grid grid-cols-2 gap-4">
-        <?php
-        $features = [
-            ['num' => '12+', 'label' => $t['stat1_label'], 'icon' => '📅'],
-            ['num' => '200+','label' => $t['stat2_label'], 'icon' => '🏗️'],
-            ['num' => '98%', 'label' => $t['stat3_label'], 'icon' => '⭐'],
-            ['num' => '50+', 'label' => $t['stat4_label'], 'icon' => '👷'],
-        ];
-        foreach ($features as $i => $f):
-        ?>
-          <div class="bg-white/5 border border-white/10 backdrop-blur-sm p-6 flex flex-col gap-2 hover:border-accent/40 transition group <?= $i === 1 ? 'mt-6' : '' ?> <?= $i === 3 ? 'mt-6' : '' ?>">
-            <span class="text-3xl"><?= $f['icon'] ?></span>
-            <span class="font-display font-black text-accent text-4xl leading-none group-hover:scale-105 transition-transform"><?= $f['num'] ?></span>
-            <span class="font-body text-white/60 text-sm leading-tight"><?= htmlspecialchars($f['label']) ?></span>
-          </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-
-  <!-- Scroll indicator -->
-  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 text-white/40 text-xs font-body tracking-widest uppercase">
-    <span>Scroll</span>
-    <div class="w-px h-10 bg-gradient-to-b from-white/30 to-transparent"></div>
-  </div>
-</section>
-
-
-<!-- ===================================================
-     2. STATS BAR (mobile)
-=================================================== -->
-<section class="bg-secondary py-10 lg:hidden">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid grid-cols-2 gap-6">
-      <?php
-      $stats = [
-          ['num' => $t['stat1_num'], 'label' => $t['stat1_label']],
-          ['num' => $t['stat2_num'], 'label' => $t['stat2_label']],
-          ['num' => $t['stat3_num'], 'label' => $t['stat3_label']],
-          ['num' => $t['stat4_num'], 'label' => $t['stat4_label']],
-      ];
-      foreach ($stats as $s):
-      ?>
-        <div class="text-center reveal stagger-child">
-          <div class="font-display font-black text-accent text-4xl leading-none"><?= $s['num'] ?></div>
-          <div class="font-body text-white/60 text-sm mt-1"><?= htmlspecialchars($s['label']) ?></div>
-        </div>
-      <?php endforeach; ?>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================================================
-     3. SOBRE NÓS
-=================================================== -->
-<section id="sobre" class="py-24 bg-light">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- Visual side -->
-      <div class="relative reveal">
-        <!-- Main image placeholder -->
-        <div class="relative z-10 bg-secondary aspect-[4/3] flex items-center justify-center overflow-hidden group">
-          <img src="/assets/images/sobre-obra.jpg" alt="Equipa ConstrucaoMz em obra"
-               class="w-full h-full object-cover opacity-70 group-hover:opacity-90 transition-opacity duration-500"
-               onerror="this.parentElement.innerHTML='<div class=\'w-full h-full flex flex-col items-center justify-center gap-4\'><span class=\'text-7xl\'>🏗️</span><span class=\'text-white/50 font-body text-sm\'>ConstrucaoMz · Beira</span></div>'">
-          <!-- Gold corner accent -->
-          <div class="absolute top-0 left-0 w-16 h-16 border-t-4 border-l-4 border-accent"></div>
-          <div class="absolute bottom-0 right-0 w-16 h-16 border-b-4 border-r-4 border-accent"></div>
-        </div>
-        <!-- Floating badge -->
-        <div class="absolute -bottom-6 -right-6 lg:-right-10 bg-accent text-primary p-6 z-20 shadow-xl">
-          <div class="font-display font-black text-4xl leading-none">12+</div>
-          <div class="font-body font-semibold text-xs uppercase tracking-widest mt-1"><?= htmlspecialchars($t['stat1_label']) ?></div>
-        </div>
-        <!-- Background square -->
-        <div class="absolute inset-0 translate-x-4 translate-y-4 bg-primary/20 -z-0"></div>
-      </div>
-
-      <!-- Text side -->
-      <div class="reveal">
-        <div class="inline-flex items-center gap-2 text-accent font-body font-semibold text-xs uppercase tracking-[0.2em] mb-4">
-          <span class="gold-divider w-8"></span>
-          <?= htmlspecialchars($t['sobre_tag']) ?>
-        </div>
-        <h2 class="font-display font-black text-primary text-4xl lg:text-5xl leading-tight mb-6">
-          <?= htmlspecialchars($t['sobre_h2']) ?>
+      <div class="sr sr-delay-2">
+        <p class="sec-label">Quem Somos</p>
+        <h2 class="font-display text-navy leading-tight mb-6" style="font-size:clamp(2.2rem,4vw,3.2rem)">
+          MAIS DE UMA DÉCADA A CONSTRUIR CONFIANÇA
         </h2>
-        <p class="font-body text-steel text-base leading-relaxed mb-4">
-          <?= htmlspecialchars($t['sobre_p1']) ?>
-        </p>
-        <p class="font-body text-steel text-base leading-relaxed mb-8">
-          <?= htmlspecialchars($t['sobre_p2']) ?>
-        </p>
-
-        <!-- Badges -->
-        <div class="flex flex-wrap gap-3 mb-8">
-          <?php foreach ([$t['sobre_badge1'], $t['sobre_badge2'], $t['sobre_badge3']] as $badge): ?>
-            <span class="inline-flex items-center gap-2 bg-primary text-white font-body text-xs font-semibold uppercase tracking-widest px-4 py-2">
-              <svg class="w-3.5 h-3.5 text-accent flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-              </svg>
-              <?= htmlspecialchars($badge) ?>
-            </span>
-          <?php endforeach; ?>
+        <div class="gold-bar mb-8">
+          <p class="text-gray-500 text-base leading-relaxed font-light">
+            A ConstrucaoMz nasceu na Beira com uma missão clara: entregar obras de excelência, no prazo e dentro do orçamento. Da fundação ao acabamento, controlamos cada fase com rigor técnico e transparência total.
+          </p>
         </div>
 
-        <a href="/sobre"
-           class="inline-flex items-center gap-3 bg-primary text-white font-display font-bold text-sm uppercase tracking-widest px-8 py-4 hover:bg-secondary transition group">
-          <?= htmlspecialchars($t['sobre_cta']) ?>
-          <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-          </svg>
+        <!-- 3 pillars -->
+        <div class="grid grid-cols-3 gap-6 mb-8">
+          <div class="text-center">
+            <div class="w-12 h-12 bg-mist rounded-none flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="shield-check" class="w-5 h-5 text-gold"></i>
+            </div>
+            <div class="text-navy text-xs font-semibold uppercase tracking-wide">Licenciados</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 bg-mist rounded-none flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="award" class="w-5 h-5 text-gold"></i>
+            </div>
+            <div class="text-navy text-xs font-semibold uppercase tracking-wide">Certificados</div>
+          </div>
+          <div class="text-center">
+            <div class="w-12 h-12 bg-mist rounded-none flex items-center justify-center mx-auto mb-2">
+              <i data-lucide="badge-check" class="w-5 h-5 text-gold"></i>
+            </div>
+            <div class="text-navy text-xs font-semibold uppercase tracking-wide">Garantia</div>
+          </div>
+        </div>
+
+        <a href="#contacto" class="btn-gold">
+          Fale Connosco
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
         </a>
       </div>
 
@@ -318,178 +290,397 @@ $t = $copy[$lang ?? 'pt'];
 </section>
 
 
-<!-- ===================================================
-     4. SERVIÇOS
-=================================================== -->
-<section id="servicos" class="py-24 bg-primary texture-overlay">
-  <div class="max-w-7xl mx-auto px-6">
+<!-- ════════════ SERVIÇOS ════════════ -->
+<section id="servicos" class="py-24 bg-mist">
+  <div class="max-w-6xl mx-auto px-8">
 
-    <!-- Header -->
-    <div class="text-center mb-16 reveal">
-      <div class="inline-flex items-center gap-2 text-accent font-body font-semibold text-xs uppercase tracking-[0.2em] mb-4">
-        <span class="gold-divider w-8"></span>
-        <?= htmlspecialchars($t['servicos_tag']) ?>
-        <span class="gold-divider w-8"></span>
-      </div>
-      <h2 class="font-display font-black text-white text-4xl lg:text-5xl leading-tight mb-4">
-        <?= htmlspecialchars($t['servicos_h2']) ?>
+    <div class="mb-14 sr">
+      <p class="sec-label">O Que Fazemos</p>
+      <h2 class="font-display text-navy" style="font-size:clamp(2.2rem,4vw,3rem)">
+        SERVIÇOS COMPLETOS DE CONSTRUÇÃO
       </h2>
-      <p class="font-body text-white/60 text-base max-w-xl mx-auto">
-        <?= htmlspecialchars($t['servicos_sub']) ?>
-      </p>
     </div>
 
-    <!-- Grid -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
-      <?php foreach ($t['servicos'] as $i => $srv): ?>
-        <div class="stagger-child card-lift bg-secondary/50 border border-white/10 p-8 hover:border-accent/50 group cursor-default">
-          <div class="text-4xl mb-4"><?= $srv['icon'] ?></div>
-          <h3 class="font-display font-bold text-white text-xl uppercase tracking-wide mb-3 group-hover:text-accent transition">
-            <?= htmlspecialchars($srv['title']) ?>
-          </h3>
-          <div class="w-8 h-0.5 bg-accent mb-4 group-hover:w-16 transition-all duration-300"></div>
-          <p class="font-body text-white/60 text-sm leading-relaxed">
-            <?= htmlspecialchars($srv['desc']) ?>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-gray-200 sr">
+      <!-- Card 1 -->
+      <div class="svc-card bg-white p-8 flex flex-col gap-4 sr-delay-1">
+        <div class="w-11 h-11 bg-navy flex items-center justify-center flex-shrink-0">
+          <i data-lucide="home" class="w-5 h-5 text-gold"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-navy text-xl tracking-wide mb-2">RESIDENCIAL</h3>
+          <p class="text-gray-500 text-sm leading-relaxed font-light">Moradias e apartamentos com materiais de primeira qualidade.</p>
+        </div>
+      </div>
+      <!-- Card 2 -->
+      <div class="svc-card bg-white p-8 flex flex-col gap-4 sr-delay-2">
+        <div class="w-11 h-11 bg-navy flex items-center justify-center flex-shrink-0">
+          <i data-lucide="building-2" class="w-5 h-5 text-gold"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-navy text-xl tracking-wide mb-2">COMERCIAL</h3>
+          <p class="text-gray-500 text-sm leading-relaxed font-light">Escritórios e espaços de negócio para maximizar a sua imagem.</p>
+        </div>
+      </div>
+      <!-- Card 3 -->
+      <div class="svc-card bg-white p-8 flex flex-col gap-4 sr-delay-3">
+        <div class="w-11 h-11 bg-navy flex items-center justify-center flex-shrink-0">
+          <i data-lucide="factory" class="w-5 h-5 text-gold"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-navy text-xl tracking-wide mb-2">INDUSTRIAL</h3>
+          <p class="text-gray-500 text-sm leading-relaxed font-light">Armazéns e infraestruturas robustas para o setor industrial.</p>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="svc-card bg-white p-8 flex flex-col gap-4 sr-delay-4">
+        <div class="w-11 h-11 bg-navy flex items-center justify-center flex-shrink-0">
+          <i data-lucide="hammer" class="w-5 h-5 text-gold"></i>
+        </div>
+        <div>
+          <h3 class="font-display text-navy text-xl tracking-wide mb-2">REMODELAÇÃO</h3>
+          <p class="text-gray-500 text-sm leading-relaxed font-light">Renovação completa de espaços existentes com acabamento impecável.</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════ PROJETOS ════════════ -->
+<section id="projetos" class="py-24 bg-white">
+  <div class="max-w-6xl mx-auto px-8">
+
+    <div class="flex items-end justify-between mb-14 sr">
+      <div>
+        <p class="sec-label">Portfólio</p>
+        <h2 class="font-display text-navy" style="font-size:clamp(2.2rem,4vw,3rem)">
+          OBRAS EM DESTAQUE
+        </h2>
+      </div>
+      <a href="#" class="hidden md:flex items-center gap-2 text-navy text-sm font-semibold uppercase tracking-widest hover:text-gold transition">
+        Ver Todos <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <!-- 3-col grid -->
+    <div class="grid md:grid-cols-3 gap-6 sr">
+
+      <!-- Project 1 — large -->
+      <div class="proj-card md:col-span-2 relative overflow-hidden cursor-pointer" style="aspect-ratio:16/9">
+        <img src="https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=1000&q=80&auto=format&fit=crop"
+             alt="Residências Buzi" class="w-full h-full object-cover" loading="lazy">
+        <div class="overlay absolute inset-0"></div>
+        <div class="absolute bottom-0 left-0 p-6">
+          <span class="bg-gold text-navy text-[10px] font-bold uppercase tracking-widest px-2 py-1 mb-2 inline-block">Residencial</span>
+          <h3 class="font-display text-white text-2xl tracking-wide">RESIDÊNCIAS BUZI</h3>
+          <p class="text-white/60 text-xs mt-1 flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-3 h-3"></i> Beira, Sofala · 2023
           </p>
         </div>
-      <?php endforeach; ?>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ===================================================
-     5. PROJETOS
-=================================================== -->
-<section id="projetos" class="py-24 bg-concrete">
-  <div class="max-w-7xl mx-auto px-6">
-
-    <!-- Header -->
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 reveal">
-      <div>
-        <div class="inline-flex items-center gap-2 text-accent font-body font-semibold text-xs uppercase tracking-[0.2em] mb-4">
-          <span class="gold-divider w-8"></span>
-          <?= htmlspecialchars($t['projetos_tag']) ?>
-        </div>
-        <h2 class="font-display font-black text-primary text-4xl lg:text-5xl leading-tight">
-          <?= htmlspecialchars($t['projetos_h2']) ?>
-        </h2>
-        <p class="font-body text-steel text-base mt-2"><?= htmlspecialchars($t['projetos_sub']) ?></p>
       </div>
-      <a href="/projetos"
-         class="flex-shrink-0 inline-flex items-center gap-3 border-2 border-primary text-primary font-display font-bold text-sm uppercase tracking-widest px-6 py-3 hover:bg-primary hover:text-white transition group">
-        <?= htmlspecialchars($t['projetos_cta']) ?>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-        </svg>
-      </a>
+
+      <!-- Project 2 -->
+      <div class="proj-card relative overflow-hidden cursor-pointer" style="aspect-ratio:9/10">
+        <img src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=700&q=80&auto=format&fit=crop"
+             alt="Complexo Ponta Gêa" class="w-full h-full object-cover" loading="lazy">
+        <div class="overlay absolute inset-0"></div>
+        <div class="absolute bottom-0 left-0 p-6">
+          <span class="bg-gold text-navy text-[10px] font-bold uppercase tracking-widest px-2 py-1 mb-2 inline-block">Comercial</span>
+          <h3 class="font-display text-white text-xl tracking-wide">COMPLEXO PONTA GÊA</h3>
+          <p class="text-white/60 text-xs mt-1 flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-3 h-3"></i> Beira · 2022
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="proj-card relative overflow-hidden cursor-pointer" style="aspect-ratio:4/3">
+        <img src="https://images.unsplash.com/photo-1565008447742-97f6f38c985c?w=700&q=80&auto=format&fit=crop"
+             alt="Armazém Porto" class="w-full h-full object-cover" loading="lazy">
+        <div class="overlay absolute inset-0"></div>
+        <div class="absolute bottom-0 left-0 p-6">
+          <span class="bg-gold text-navy text-[10px] font-bold uppercase tracking-widest px-2 py-1 mb-2 inline-block">Industrial</span>
+          <h3 class="font-display text-white text-xl tracking-wide">ARMAZÉM PORTO DA BEIRA</h3>
+          <p class="text-white/60 text-xs mt-1 flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-3 h-3"></i> Porto, Beira · 2023
+          </p>
+        </div>
+      </div>
+
+      <!-- Project 4 -->
+      <div class="proj-card md:col-span-2 relative overflow-hidden cursor-pointer" style="aspect-ratio:16/7">
+        <img src="https://images.unsplash.com/photo-1590856029826-c7a73142bbf1?w=1000&q=80&auto=format&fit=crop"
+             alt="Hotel Costa do Sol" class="w-full h-full object-cover" loading="lazy">
+        <div class="overlay absolute inset-0"></div>
+        <div class="absolute bottom-0 left-0 p-6">
+          <span class="bg-gold text-navy text-[10px] font-bold uppercase tracking-widest px-2 py-1 mb-2 inline-block">Comercial</span>
+          <h3 class="font-display text-white text-2xl tracking-wide">HOTEL COSTA DO SOL</h3>
+          <p class="text-white/60 text-xs mt-1 flex items-center gap-1">
+            <i data-lucide="map-pin" class="w-3 h-3"></i> Beira, Sofala · 2021
+          </p>
+        </div>
+      </div>
+
     </div>
 
-    <!-- Project cards -->
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 reveal">
-      <?php foreach ($t['projetos'] as $p): ?>
-        <div class="stagger-child card-lift group cursor-pointer relative overflow-hidden">
-          <!-- Image / Colour block -->
-          <div class="aspect-[3/4] relative overflow-hidden"
-               style="background: <?= htmlspecialchars($p['color']) ?>;">
-            <!-- pattern -->
-            <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, #fff 0, #fff 1px, transparent 0, transparent 50%); background-size: 20px 20px;"></div>
-            <!-- building icon -->
-            <div class="absolute inset-0 flex flex-col items-center justify-center gap-2 text-white/20">
-              <svg class="w-20 h-20" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/>
-              </svg>
+    <div class="md:hidden mt-8 text-center sr">
+      <a href="#" class="btn-gold">Ver Todos os Projetos <i data-lucide="arrow-right" class="w-4 h-4"></i></a>
+    </div>
+
+  </div>
+</section>
+
+
+<!-- ════════════ CONTACTO ════════════ -->
+<section id="contacto" class="bg-navy py-24">
+  <div class="max-w-6xl mx-auto px-8">
+    <div class="grid md:grid-cols-2 gap-16 items-start">
+
+      <!-- Left: info -->
+      <div class="sr">
+        <p class="sec-label" style="color:#E8A020">Fale Connosco</p>
+        <h2 class="font-display text-white leading-tight mb-6" style="font-size:clamp(2.2rem,4vw,3.2rem)">
+          PRONTO PARA<br>COMEÇAR O SEU<br><span class="text-gold">PROJECTO?</span>
+        </h2>
+        <p class="text-white/50 text-sm leading-relaxed mb-10 font-light">
+          Envie-nos os detalhes do seu projecto. A nossa equipa responde em menos de 24 horas com um orçamento sem compromisso.
+        </p>
+
+        <!-- Contact details -->
+        <div class="space-y-5">
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 border border-white/15 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="map-pin" class="w-4 h-4 text-gold"></i>
             </div>
-            <!-- hover overlay -->
-            <div class="absolute inset-0 bg-accent/0 group-hover:bg-accent/10 transition-all duration-300"></div>
-            <!-- top label -->
-            <div class="absolute top-4 left-4">
-              <span class="bg-accent text-primary font-body font-bold text-xs uppercase tracking-widest px-3 py-1">
-                <?= htmlspecialchars($p['cat']) ?>
-              </span>
+            <div>
+              <div class="text-white/40 text-xs uppercase tracking-widest mb-0.5">Morada</div>
+              <div class="text-white text-sm">Beira, Sofala, Moçambique</div>
             </div>
           </div>
-          <!-- Info -->
-          <div class="bg-white p-5 border-b-4 border-transparent group-hover:border-accent transition-all duration-300">
-            <h3 class="font-display font-bold text-primary text-lg uppercase tracking-wide leading-tight mb-1">
-              <?= htmlspecialchars($p['title']) ?>
-            </h3>
-            <div class="flex items-center justify-between mt-2">
-              <span class="font-body text-steel text-xs flex items-center gap-1">
-                <svg class="w-3 h-3" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
-                </svg>
-                <?= htmlspecialchars($p['loc']) ?>
-              </span>
-              <span class="font-body text-steel text-xs"><?= htmlspecialchars($p['year']) ?></span>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 border border-white/15 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="phone" class="w-4 h-4 text-gold"></i>
+            </div>
+            <div>
+              <div class="text-white/40 text-xs uppercase tracking-widest mb-0.5">Telefone</div>
+              <a href="tel:+258840000000" class="text-white text-sm hover:text-gold transition">+258 84 000 0000</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 border border-white/15 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="mail" class="w-4 h-4 text-gold"></i>
+            </div>
+            <div>
+              <div class="text-white/40 text-xs uppercase tracking-widest mb-0.5">Email</div>
+              <a href="mailto:geral@construcaomz.co.mz" class="text-white text-sm hover:text-gold transition">geral@construcaomz.co.mz</a>
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <div class="w-10 h-10 border border-white/15 flex items-center justify-center flex-shrink-0">
+              <i data-lucide="clock" class="w-4 h-4 text-gold"></i>
+            </div>
+            <div>
+              <div class="text-white/40 text-xs uppercase tracking-widest mb-0.5">Horário</div>
+              <div class="text-white text-sm">Seg – Sex &nbsp; 7h – 18h</div>
             </div>
           </div>
         </div>
-      <?php endforeach; ?>
-    </div>
+      </div>
 
-  </div>
-</section>
+      <!-- Right: form -->
+      <div class="sr sr-delay-2">
+        <form id="contact-form" class="space-y-6" novalidate>
 
-
-<!-- ===================================================
-     6. CTA BAND
-=================================================== -->
-<section class="py-20 bg-accent relative overflow-hidden">
-  <!-- Diagonal accent -->
-  <div class="absolute inset-0" style="background: repeating-linear-gradient(-45deg, rgba(0,0,0,0.04) 0, rgba(0,0,0,0.04) 2px, transparent 0, transparent 10px);"></div>
-  <div class="relative max-w-4xl mx-auto px-6 text-center reveal">
-    <h2 class="font-display font-black text-primary text-4xl lg:text-6xl uppercase leading-tight mb-4">
-      <?= htmlspecialchars($t['cta_h2']) ?>
-    </h2>
-    <p class="font-body text-primary/70 text-lg mb-10">
-      <?= htmlspecialchars($t['cta_sub']) ?>
-    </p>
-    <div class="flex flex-wrap justify-center gap-4">
-      <a href="/contacto"
-         class="inline-flex items-center gap-3 bg-primary text-white font-display font-bold text-sm uppercase tracking-widest px-10 py-4 hover:bg-secondary transition group">
-        <?= htmlspecialchars($t['cta_btn1']) ?>
-        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/>
-        </svg>
-      </a>
-      <a href="tel:+258840000000"
-         class="inline-flex items-center gap-3 border-2 border-primary/40 text-primary font-display font-bold text-sm uppercase tracking-widest px-10 py-4 hover:border-primary transition">
-        <?= htmlspecialchars($t['cta_btn2']) ?>
-      </a>
-    </div>
-  </div>
-</section>
-
-
-<!-- ===================================================
-     7. CONTACTO STRIP
-=================================================== -->
-<section id="contacto" class="bg-secondary py-14">
-  <div class="max-w-7xl mx-auto px-6">
-    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 text-white">
-      <?php
-      $contact_items = [
-          ['icon' => 'M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z M15 11a3 3 0 11-6 0 3 3 0 016 0z', 'label' => 'Morada', 'value' => $t['cont_morada']],
-          ['icon' => 'M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z', 'label' => 'Telefone', 'value' => $t['cont_tel']],
-          ['icon' => 'M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z', 'label' => 'Email', 'value' => $t['cont_email']],
-          ['icon' => 'M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z', 'label' => 'Horário', 'value' => $t['cont_horario']],
-      ];
-      foreach ($contact_items as $item):
-      ?>
-        <div class="flex items-start gap-4 reveal stagger-child">
-          <div class="flex-shrink-0 w-10 h-10 bg-accent/15 flex items-center justify-center mt-0.5">
-            <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="<?= $item['icon'] ?>"/>
-            </svg>
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Nome *</label>
+              <input type="text" name="nome" required placeholder="O seu nome"
+                     class="field" autocomplete="off">
+            </div>
+            <div>
+              <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Empresa</label>
+              <input type="text" name="empresa" placeholder="Nome da empresa"
+                     class="field" autocomplete="off">
+            </div>
           </div>
+
+          <div class="grid grid-cols-2 gap-6">
+            <div>
+              <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Email *</label>
+              <input type="email" name="email" required placeholder="email@exemplo.com"
+                     class="field" autocomplete="off">
+            </div>
+            <div>
+              <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Telefone</label>
+              <input type="tel" name="tel" placeholder="+258 00 000 0000"
+                     class="field" autocomplete="off">
+            </div>
+          </div>
+
           <div>
-            <div class="font-display font-bold text-accent text-xs uppercase tracking-widest mb-1"><?= $item['label'] ?></div>
-            <div class="font-body text-white/80 text-sm"><?= htmlspecialchars($item['value']) ?></div>
+            <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Tipo de Projecto *</label>
+            <select name="tipo" required class="field">
+              <option value="" disabled selected>Seleccione o tipo de obra</option>
+              <option value="residencial">Construção Residencial</option>
+              <option value="comercial">Construção Comercial</option>
+              <option value="industrial">Construção Industrial</option>
+              <option value="remodelacao">Remodelação</option>
+              <option value="consultoria">Projecto & Consultoria</option>
+              <option value="outro">Outro</option>
+            </select>
           </div>
-        </div>
-      <?php endforeach; ?>
+
+          <div>
+            <label class="text-white/40 text-[11px] uppercase tracking-widest block mb-1">Mensagem *</label>
+            <textarea name="mensagem" required rows="4" placeholder="Descreva brevemente o seu projecto..."
+                      class="field resize-none" style="border-bottom:1px solid rgba(255,255,255,.25)"></textarea>
+          </div>
+
+          <!-- Error msg -->
+          <div id="form-error" class="hidden text-red-400 text-xs flex items-center gap-2">
+            <i data-lucide="alert-circle" class="w-4 h-4"></i>
+            <span>Por favor preencha os campos obrigatórios.</span>
+          </div>
+
+          <button type="submit" class="btn-gold w-full justify-center py-4" id="submit-btn">
+            <span id="btn-text">ENVIAR MENSAGEM</span>
+            <i data-lucide="send" class="w-4 h-4" id="btn-icon"></i>
+            <i data-lucide="loader-2" class="w-4 h-4 hidden animate-spin" id="btn-loader"></i>
+          </button>
+
+          <p class="text-white/25 text-[11px] text-center">
+            Os seus dados são tratados com total confidencialidade.
+          </p>
+        </form>
+      </div>
+
     </div>
   </div>
 </section>
+
+
+<!-- ════════════ FOOTER ════════════ -->
+<footer class="bg-navy border-t border-white/10 py-8">
+  <div class="max-w-6xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-4">
+    <span class="font-display text-white text-xl tracking-widest">
+      <span class="text-gold">C</span>ONSTRUCAO<span class="text-gold">MZ</span>
+    </span>
+    <p class="text-white/30 text-xs">© 2025 ConstrucaoMz · Beira, Moçambique · Todos os direitos reservados.</p>
+    <div class="flex gap-3">
+      <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center hover:border-gold transition">
+        <i data-lucide="facebook" class="w-3.5 h-3.5 text-white/50 hover:text-gold transition"></i>
+      </a>
+      <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center hover:border-gold transition">
+        <i data-lucide="linkedin" class="w-3.5 h-3.5 text-white/50 hover:text-gold transition"></i>
+      </a>
+      <a href="#" class="w-8 h-8 border border-white/15 flex items-center justify-center hover:border-gold transition">
+        <i data-lucide="instagram" class="w-3.5 h-3.5 text-white/50 hover:text-gold transition"></i>
+      </a>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast notification -->
+<div id="toast">
+  <div class="flex items-center gap-3">
+    <i data-lucide="check-circle" class="w-4 h-4 text-gold"></i>
+    <span>Mensagem enviada! Responderemos em breve.</span>
+  </div>
+</div>
+
+
+<script>
+// ── Init Lucide icons
+lucide.createIcons();
+
+// ── Navbar scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 50);
+}, { passive: true });
+
+// ── Mobile menu
+const mbtn = document.getElementById('mbtn');
+const mmenu = document.getElementById('mmenu');
+const micoOpen  = document.getElementById('mico-open');
+const micoClose = document.getElementById('mico-close');
+let mOpen = false;
+mbtn.addEventListener('click', () => {
+  mOpen = !mOpen;
+  mmenu.classList.toggle('hidden', !mOpen);
+  micoOpen.classList.toggle('hidden', mOpen);
+  micoClose.classList.toggle('hidden', !mOpen);
+});
+// Close menu on link click
+mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mOpen = false;
+  mmenu.classList.add('hidden');
+  micoOpen.classList.remove('hidden');
+  micoClose.classList.add('hidden');
+}));
+
+// ── Scroll reveal
+const srObserver = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); } });
+}, { threshold: 0.08 });
+document.querySelectorAll('.sr').forEach(el => srObserver.observe(el));
+
+// ── Contact form
+const form      = document.getElementById('contact-form');
+const formError = document.getElementById('form-error');
+const submitBtn = document.getElementById('submit-btn');
+const btnText   = document.getElementById('btn-text');
+const btnIcon   = document.getElementById('btn-icon');
+const btnLoader = document.getElementById('btn-loader');
+const toast     = document.getElementById('toast');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  formError.classList.add('hidden');
+
+  // Validate required fields
+  const required = form.querySelectorAll('[required]');
+  let valid = true;
+  required.forEach(f => { if (!f.value.trim()) valid = false; });
+  if (!valid) { formError.classList.remove('hidden'); return; }
+
+  // Loading state
+  submitBtn.disabled = true;
+  btnText.textContent = 'A ENVIAR...';
+  btnIcon.classList.add('hidden');
+  btnLoader.classList.remove('hidden');
+
+  // Collect data
+  const data = Object.fromEntries(new FormData(form));
+
+  try {
+    // ── Replace the URL below with your actual backend endpoint or mailto handler ──
+    // Example with Formspree: await fetch('https://formspree.io/f/YOUR_ID', {...})
+    // For now we simulate a 1.5s delay and show success
+    await new Promise(r => setTimeout(r, 1500));
+
+    // Success
+    form.reset();
+    showToast();
+  } catch (err) {
+    formError.querySelector('span').textContent = 'Erro ao enviar. Tente novamente.';
+    formError.classList.remove('hidden');
+  } finally {
+    submitBtn.disabled = false;
+    btnText.textContent = 'ENVIAR MENSAGEM';
+    btnIcon.classList.remove('hidden');
+    btnLoader.classList.add('hidden');
+    lucide.createIcons(); // re-render after DOM change
+  }
+});
+
+function showToast() {
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+</script>
+
+</body>
+</html>
