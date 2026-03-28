@@ -193,7 +193,8 @@ $year = date('Y');
         <!-- Newsletter -->
         <div>
           <p class="text-white/70 text-xs uppercase tracking-widest font-semibold mb-3"><?= esc($l['newsletter']) ?></p>
-          <?= form_open(base_url('newsletter/subscribe'), ['class' => 'flex gap-0']) ?>
+          <form action="<?= base_url('newsletter/subscribe') ?>" method="post" class="flex gap-0">
+            <?= csrf_field() ?>
             <input type="email" name="email" required
                    placeholder="<?= esc($l['nl_placeholder']) ?>"
                    class="flex-1 bg-white/5 border border-white/15 text-white text-sm px-3 py-2.5 placeholder:text-white/30 focus:outline-none focus:border-gold transition">
@@ -201,7 +202,7 @@ $year = date('Y');
                     class="bg-gold text-navy font-bold text-xs uppercase tracking-widest px-4 py-2.5 hover:bg-gold-dark transition flex-shrink-0">
               <?= esc($l['nl_btn']) ?>
             </button>
-          <?= form_close() ?>
+          </form>
           <p class="text-white/25 text-[10px] mt-2"><?= esc($l['no_spam']) ?></p>
         </div>
       </div>
