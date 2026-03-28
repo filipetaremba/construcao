@@ -1,138 +1,189 @@
+<?php
+/**
+ * app/Views/layouts/main.php
+ *
+ * Layout base CI4 — todas as páginas fazem:
+ *   <?= $this->extend('layouts/main') ?>
+ *   <?= $this->section('content') ?> ... <?= $this->endSection() ?>
+ *
+ * Variáveis esperadas do controller:
+ *   $lang         (string) 'pt' | 'en'
+ *   $current_page (string) ex: '/', '/sobre'
+ *   $title        (string) título da tab
+ *   $meta_desc    (string) meta description (opcional)
+ */
+$lang         = $lang         ?? get_cookie('lang') ?? 'pt';
+$current_page = $current_page ?? '/';
+$title        = $title        ?? 'ConstrucaoMz — Construção em Moçambique';
+$meta_desc    = $meta_desc    ?? 'Construção residencial, comercial e industrial com qualidade, rigor e compromisso na Beira e em todo Moçambique.';
+?>
 <!DOCTYPE html>
-<html lang="<?= $lang ?? 'pt' ?>">
+<html lang="<?= esc($lang) ?>" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?= htmlspecialchars($title ?? 'ConstrucaoMz — Construção de Excelência na Beira') ?></title>
-    <meta name="description" content="<?= htmlspecialchars($meta_desc ?? 'ConstrucaoMz: empresa líder de construção civil, residencial e comercial na Beira, Moçambique.') ?>">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="<?= esc($meta_desc) ?>">
+  <title><?= esc($title) ?></title>
 
-    <!-- Tailwind CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon.png') ?>">
 
-    <!-- Google Fonts: Barlow Condensed + Source Sans 3 -->
-    <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Tailwind Config -->
-    <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              primary:   '#0D1F4E',   /* deep navy */
-              secondary: '#1A3A70',   /* medium navy */
-              accent:    '#F5A800',   /* amber/gold */
-              'accent-dark': '#D48C00',
-              steel:     '#4A5568',
-              light:     '#F4F4F0',
-              concrete:  '#E8E4DC',
-            },
-            fontFamily: {
-              display: ['"Barlow Condensed"', 'sans-serif'],
-              body:    ['"Source Sans 3"', 'sans-serif'],
-            },
-            backgroundImage: {
-              'hero-pattern': "url('/assets/images/hero-bg.jpg')",
-            }
-          }
+  <!-- Tailwind CDN (Play CDN — trocar por build em produção) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy:    '#0D1F4E',
+            gold:    '#E8A020',
+            'gold-dark': '#c98a18',
+            light:   '#F5F5F0',
+            steel:   '#6B7A99',
+            primary: '#0D1F4E',
+            accent:  '#E8A020',
+            'accent-dark': '#c98a18',
+            secondary: '#162c6e',
+          },
+          fontFamily: {
+            display: ['"Barlow Condensed"', 'sans-serif'],
+            body:    ['"Inter"', 'sans-serif'],
+          },
         }
       }
-    </script>
+    }
+  </script>
 
-    <style>
-      *, *::before, *::after { box-sizing: border-box; }
-      body { font-family: 'Source Sans 3', sans-serif; background: #fff; color: #1a1a1a; }
+  <!-- Estilos globais (componentes reutilizáveis que Tailwind não cobre inline) -->
+  <style>
+    /* ── Base ── */
+    body { font-family: 'Inter', sans-serif; }
 
-      /* Scrollbar */
-      ::-webkit-scrollbar { width: 6px; }
-      ::-webkit-scrollbar-track { background: #0D1F4E; }
-      ::-webkit-scrollbar-thumb { background: #F5A800; border-radius: 3px; }
+    /* ── Botões ── */
+    .btn-gold {
+      display: inline-flex; align-items: center; gap: .5rem;
+      background: #E8A020; color: #0D1F4E;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; padding: .75rem 1.5rem;
+      transition: background .2s, transform .15s; text-decoration: none;
+    }
+    .btn-gold:hover { background: #c98a18; transform: translateY(-1px); }
 
-      /* Animated underline for nav links */
-      .nav-link { position: relative; }
-      .nav-link::after {
-        content: '';
-        position: absolute;
-        bottom: -4px; left: 0;
-        width: 0; height: 2px;
-        background: #F5A800;
-        transition: width 0.3s ease;
-      }
-      .nav-link:hover::after { width: 100%; }
-      .nav-link.active::after { width: 100%; }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid rgba(255,255,255,.35); color: #fff;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; padding: .75rem 1.5rem;
+      transition: border-color .2s, color .2s; text-decoration: none;
+    }
+    .btn-outline:hover { border-color: #E8A020; color: #E8A020; }
 
-      /* Section reveal animation */
-      .reveal {
-        opacity: 0;
-        transform: translateY(30px);
-        transition: opacity 0.7s ease, transform 0.7s ease;
-      }
-      .reveal.visible { opacity: 1; transform: translateY(0); }
+    .btn-outline-dark {
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid #0D1F4E; color: #0D1F4E;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700; font-size: .72rem; letter-spacing: .12em;
+      text-transform: uppercase; padding: .75rem 1.5rem;
+      transition: background .2s, color .2s; text-decoration: none;
+    }
+    .btn-outline-dark:hover { background: #0D1F4E; color: #fff; }
 
-      /* Diagonal accent stripe */
-      .diagonal-stripe {
-        position: relative;
-        overflow: hidden;
-      }
-      .diagonal-stripe::before {
-        content: '';
-        position: absolute;
-        top: 0; right: -60px;
-        width: 140px; height: 100%;
-        background: #F5A800;
-        transform: skewX(-12deg);
-        opacity: 0.12;
-      }
+    /* ── Tipografia utilitária ── */
+    .sec-label {
+      display: block;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: .68rem; font-weight: 700;
+      letter-spacing: .2em; text-transform: uppercase;
+      color: #E8A020; margin-bottom: .6rem;
+    }
+    .gold-bar { border-left: 3px solid #E8A020; padding-left: 1.25rem; }
 
-      /* Steel texture overlay for sections */
-      .texture-overlay {
-        background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      }
+    /* ── Formulário ── */
+    .field-label {
+      display: block; font-size: .72rem; font-weight: 600;
+      letter-spacing: .08em; text-transform: uppercase;
+      color: rgba(255,255,255,.5); margin-bottom: .4rem;
+    }
+    .field {
+      width: 100%; background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.15); color: #fff;
+      font-size: .875rem; padding: .65rem .85rem;
+      transition: border-color .2s; outline: none;
+      font-family: 'Inter', sans-serif;
+    }
+    .field::placeholder { color: rgba(255,255,255,.3); }
+    .field:focus { border-color: #E8A020; }
+    select.field option { background: #0D1F4E; color: #fff; }
 
-      /* Card hover lift */
-      .card-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-      .card-lift:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(13,31,78,0.18);
-      }
+    /* ── Cards ── */
+    .svc-card { transition: box-shadow .25s, transform .25s; }
+    .svc-card:hover { box-shadow: 0 12px 32px rgba(13,31,78,.12); transform: translateY(-3px); }
 
-      /* Counter animation */
-      .counter { transition: all 0.3s; }
+    .proj-card { display: block; }
+    .proj-card .overlay {
+      background: linear-gradient(to top, rgba(13,31,78,.85) 0%, rgba(13,31,78,.1) 60%, transparent 100%);
+    }
 
-      /* Gold divider line */
-      .gold-divider {
-        display: inline-block;
-        width: 60px; height: 4px;
-        background: #F5A800;
-        border-radius: 2px;
-      }
-    </style>
+    /* ── Scroll reveal ── */
+    .reveal { opacity: 0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.visible { opacity: 1; transform: none; }
+
+    /* ── Animação hero ── */
+    @keyframes fadein { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:none; } }
+    .animate-fadein { animation: fadein .7s ease both; }
+
+    /* ── Nav link activo ── */
+    .nav-link { position: relative; padding-bottom: 2px; }
+    .nav-link::after {
+      content: ''; position: absolute; bottom: -2px; left: 0;
+      width: 0; height: 2px; background: #E8A020;
+      transition: width .25s ease;
+    }
+    .nav-link:hover::after,
+    .nav-link.active::after { width: 100%; }
+    .nav-link.active { color: #E8A020 !important; }
+  </style>
+
+  <!-- Slot para CSS extra por página (opcional) -->
+  <?= $this->renderSection('head_extra') ?>
 </head>
-<body>
-    <?= view('partials/header', ['lang' => $lang ?? 'pt', 'current_page' => $current_page ?? '']) ?>
 
-    <main>
-        <?= view($page, ['lang' => $lang ?? 'pt']) ?>
-    </main>
+<body class="bg-white text-navy antialiased">
 
-    <?= view('partials/footer', ['lang' => $lang ?? 'pt']) ?>
+  <!-- ════ HEADER ════ -->
+  <?= $this->include('partials/header') ?>
 
-    <!-- Global scroll reveal -->
-    <script>
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            // Stagger children if they have reveal class
-            e.target.querySelectorAll('.stagger-child').forEach((child, i) => {
-              child.style.transitionDelay = `${i * 0.12}s`;
-              child.classList.add('visible');
-            });
-          }
-        });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-    </script>
+  <!-- ════ CONTEÚDO DA PÁGINA ════ -->
+  <main>
+    <?= $this->renderSection('content') ?>
+  </main>
+
+  <!-- ════ FOOTER ════ -->
+  <?= $this->include('partials/footer') ?>
+
+  <!-- ════ JS GLOBAL ════ -->
+  <script>
+  // ── Scroll Reveal ──
+  (function () {
+    const els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(el => io.observe(el));
+  })();
+  </script>
+
+  <!-- Slot para JS extra por página (opcional) -->
+  <?= $this->renderSection('scripts') ?>
+
 </body>
 </html>
