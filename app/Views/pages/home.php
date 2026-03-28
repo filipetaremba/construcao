@@ -19,7 +19,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
 
   <!-- Imagem de fundo -->
   <div class="absolute inset-0 z-0">
-    <img src="<?= base_url('assets/images/hero-bg.jpg') ?>"
+    <img src="<?= base_url('assets/images/hero-bg.jpeg') ?>"
          alt="" class="w-full h-full object-cover opacity-40" loading="eager">
     <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-navy/40"></div>
     <!-- Acento diagonal decorativo -->
