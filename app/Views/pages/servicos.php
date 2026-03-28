@@ -24,6 +24,10 @@ $t = [
             ['val' => '5',    'label' => 'Anos de Garantia'],
         ],
 
+        /* Título da página */
+        'page_label'    => 'O Que Fazemos',
+        'page_title'    => 'NOSSOS SERVIÇOS',
+
         /* Intro */
         'intro_label'   => 'A Nossa Especialidade',
         'intro_title'   => 'CONSTRUÇÃO DE EXCELÊNCIA EM MOÇAMBIQUE',
@@ -165,6 +169,8 @@ $t = [
     'en' => [
         'bc_home'       => 'Home',
         'bc_page'       => 'Services',
+        'page_label'    => 'What We Do',
+        'page_title'    => 'OUR SERVICES',
         'stats' => [
             ['val' => '12+',  'label' => 'Years of Experience'],
             ['val' => '200+', 'label' => 'Completed Projects'],
@@ -271,33 +277,76 @@ $tel = 'tel:+258853592701';
 ?>
 
 
-<!-- ════════ INTRO ════════ -->
-<section class="py-16 md:py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-6 md:px-8">
-    <div class="grid md:grid-cols-2 gap-12 items-center reveal">
+<!-- ════════ INTRO (fundo navy — estilo hero) ════════ -->
+<section class="relative overflow-hidden bg-navy pt-[54px]">
+
+  <!-- Fundo decorativo -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format&fit=crop"
+         alt="" class="w-full h-full object-cover opacity-20" loading="eager">
+    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/70"></div>
+    <div class="absolute inset-0 overflow-hidden">
+      <div class="absolute top-0 right-0 w-2/5 h-full bg-gold opacity-[0.03] skew-x-[-6deg] translate-x-20"></div>
+    </div>
+  </div>
+
+  <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-8 w-full pt-16 pb-10">
+
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-white/40 text-xs uppercase tracking-widest mb-8 animate-fadein" style="animation-delay:.05s">
+      <a href="<?= base_url('/') ?>" class="hover:text-gold transition"><?= esc($l['bc_home']) ?></a>
+      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      <span class="text-gold"><?= esc($l['bc_page']) ?></span>
+    </nav>
+
+    <!-- Título da página -->
+    <div class="mb-12 animate-fadein" style="animation-delay:.15s">
+      <p class="sec-label"><?= esc($l['page_label']) ?></p>
+      <h1 class="font-display text-white leading-[.88]" style="font-size:clamp(2.8rem,7vw,5.5rem)">
+        <?= esc($l['page_title']) ?>
+      </h1>
+    </div>
+
+    <!-- Intro em duas colunas -->
+    <div class="grid md:grid-cols-2 gap-10 items-start pb-12 border-b border-white/10 animate-fadein" style="animation-delay:.25s">
       <div>
-        <p class="sec-label"><?= esc($l['intro_label']) ?></p>
-        <h2 class="font-display text-navy leading-tight mb-6" style="font-size:clamp(1.8rem,3.5vw,2.8rem)">
+        <p class="text-gold font-display text-lg tracking-wide mb-3"><?= esc($l['intro_label']) ?></p>
+        <h2 class="font-display text-white leading-tight" style="font-size:clamp(1.4rem,2.5vw,2rem)">
           <?= esc($l['intro_title']) ?>
         </h2>
       </div>
-      <div class="space-y-4 text-gray-500 font-light text-base leading-relaxed">
-        <p class="gold-bar"><?= esc($l['intro_p1']) ?></p>
+      <div class="space-y-4 text-white/55 font-light text-sm leading-relaxed">
+        <p class="border-l-2 border-gold pl-4"><?= esc($l['intro_p1']) ?></p>
         <p><?= esc($l['intro_p2']) ?></p>
       </div>
     </div>
 
     <!-- Âncoras de navegação rápida -->
-    <div class="flex flex-wrap gap-3 mt-12 reveal">
+    <div class="flex flex-wrap gap-3 py-8 animate-fadein" style="animation-delay:.35s">
       <?php foreach ($l['services'] as $s) : ?>
       <a href="#<?= $s['id'] ?>"
-         class="border border-navy/20 text-navy text-xs font-bold uppercase tracking-widest px-4 py-2 hover:bg-navy hover:text-white hover:border-navy transition-all duration-200 flex items-center gap-2">
+         class="border border-white/20 text-white/70 text-xs font-bold uppercase tracking-widest px-4 py-2 hover:bg-gold hover:text-navy hover:border-gold transition-all duration-200 flex items-center gap-2">
         <svg class="w-3 h-3 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
         <?= esc($s['tag']) ?>
       </a>
       <?php endforeach; ?>
     </div>
   </div>
+
+  <!-- Tira de stats -->
+  <!-- <div class="relative z-10">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="grid grid-cols-2 md:grid-cols-4 bg-navy/95 backdrop-blur-sm border-t border-white/10 divide-x divide-white/10">
+        <?php foreach ($l['stats'] as $s) : ?>
+        <div class="px-4 md:px-6 py-5 text-center">
+          <div class="font-display text-gold text-2xl md:text-3xl"><?= $s['val'] ?></div>
+          <div class="text-white/40 text-[10px] uppercase tracking-widest mt-0.5"><?= esc($s['label']) ?></div>
+        </div>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  </div> -->
+
 </section>
 
 
