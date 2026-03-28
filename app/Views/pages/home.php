@@ -21,19 +21,19 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
   <div class="absolute inset-0 z-0">
     <img src="<?= base_url('assets/images/hero-bg.jpeg') ?>"
          alt="" class="w-full h-full object-cover opacity-40" loading="eager">
-    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/80 to-navy/40"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-navy/70 via-navy/40 to-navy/10"></div>
     <!-- Acento diagonal decorativo -->
     <div class="absolute inset-0 overflow-hidden">
       <div class="absolute top-0 right-0 w-1/3 h-full bg-gold opacity-[0.04] skew-x-[-8deg] translate-x-12"></div>
     </div>
   </div>
 
-  <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-8 w-full pt-24 pb-32">
+  <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-8 w-full pt-24 pb-32">
     <div class="max-w-2xl">
-      <p class="sec-label mb-5 animate-fadein" style="animation-delay:.1s">Beira · Moçambique</p>
+      <p class="sec-label mb-5 animate-fadein" style="animation-delay:.1s"></p>
       <h1 class="font-display text-white leading-[.88] mb-6 animate-fadein"
           style="font-size:clamp(3.2rem,8vw,7.2rem);animation-delay:.2s">
-        SOMOS<br>
+        <br>
         ESPECIALISTAS<br>
         EM <span class="text-gold">CONSTRUÇÃO</span>
       </h1>
@@ -54,7 +54,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
   </div>
 
   <!-- Tira de estatísticas -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 animate-fadein" style="animation-delay:.7s">
+  <!-- <div class="absolute bottom-0 left-0 right-0 z-10 animate-fadein" style="animation-delay:.7s">
     <div class="max-w-6xl mx-auto px-6 md:px-8">
       <div class="grid grid-cols-3 bg-navy/90 backdrop-blur-sm border-t border-white/10 divide-x divide-white/10">
         <div class="px-4 md:px-8 py-5 text-center">
@@ -71,7 +71,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
 
 
