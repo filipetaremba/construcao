@@ -109,7 +109,7 @@ $links = [
              class="h-8 md:h-10 w-auto transition-transform duration-300 group-hover:scale-105"
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
         <!-- Fallback texto -->
-        <span class="hidden items-center font-display text-xl md:text-2xl font-bold tracking-wide text-white leading-none">
+        <span class="items-center font-display text-xl md:text-2xl font-bold tracking-wide text-white leading-none" style="display:none">
           <span class="text-gold">C</span>ONSTRUCAO<span class="text-gold ml-1">MZ</span>
         </span>
       </a>

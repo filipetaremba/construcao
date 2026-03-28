@@ -86,7 +86,7 @@ $year = date('Y');
           <img src="<?= base_url('assets/images/logo.png') ?>"
                alt="ConstrucaoMz Logo" class="h-10 w-auto"
                onerror="this.style.display='none';this.nextElementSibling.style.display='block'">
-          <span class="hidden font-display text-2xl font-bold text-white tracking-wide">
+          <span class="font-display text-2xl font-bold text-white tracking-wide" style="display:none">
             <span class="text-gold">C</span>ONSTRUCAO<span class="text-gold">MZ</span>
           </span>
         </a>

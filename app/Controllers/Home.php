@@ -6,56 +6,59 @@ class Home extends BaseController
 {
     public function index()
     {
-        $data['lang'] = session()->get('lang') ?? 'pt';
-        return view('layouts/main', [
-            'page'    => 'pages/home',
-            'lang'    => $data['lang'],
-            'title'   => 'ConstrucaoMz'
+        return view('pages/home', [
+            'lang'         => session()->get('lang') ?? 'pt',
+            'current_page' => '/',
+            'title'        => 'ConstrucaoMz — Construção em Moçambique',
+            'meta_desc'    => 'Construção residencial, comercial e industrial com qualidade, rigor e compromisso na Beira e em todo Moçambique.',
         ]);
     }
 
     public function sobre()
     {
-        $lang = session()->get('lang') ?? 'pt';
-        return view('layouts/main', [
-            'page'  => 'pages/sobre',
-            'lang'  => $lang,
-            'title' => 'Sobre Nós | ConstrucaoMz'
+        return view('pages/sobre', [
+            'lang'         => session()->get('lang') ?? 'pt',
+            'current_page' => '/sobre',
+            'title'        => 'Sobre Nós | ConstrucaoMz',
+            'meta_desc'    => 'Conheça a equipa e a história da ConstrucaoMz.',
         ]);
     }
 
     public function servicos()
     {
-        $lang = session()->get('lang') ?? 'pt';
-        return view('layouts/main', [
-            'page'  => 'pages/servicos',
-            'lang'  => $lang,
-            'title' => 'Serviços | ConstrucaoMz'
+        return view('pages/servicos', [
+            'lang'         => session()->get('lang') ?? 'pt',
+            'current_page' => '/servicos',
+            'title'        => 'Serviços | ConstrucaoMz',
+            'meta_desc'    => 'Construção residencial, comercial, industrial, remodelação e consultoria.',
         ]);
     }
 
     public function projetos()
     {
-        $lang = session()->get('lang') ?? 'pt';
-        return view('layouts/main', [
-            'page'  => 'pages/projetos',
-            'lang'  => $lang,
-            'title' => 'Projetos | ConstrucaoMz'
+        return view('pages/projetos', [
+            'lang'         => session()->get('lang') ?? 'pt',
+            'current_page' => '/projetos',
+            'title'        => 'Projetos | ConstrucaoMz',
+            'meta_desc'    => 'Portfólio de obras concluídas pela ConstrucaoMz em Moçambique.',
         ]);
     }
 
     public function contacto()
     {
-        $lang = session()->get('lang') ?? 'pt';
-        return view('layouts/main', [
-            'page'  => 'pages/contacto',
-            'lang'  => $lang,
-            'title' => 'Contacto | ConstrucaoMz'
+        return view('pages/contacto', [
+            'lang'         => session()->get('lang') ?? 'pt',
+            'current_page' => '/contacto',
+            'title'        => 'Contacto | ConstrucaoMz',
+            'meta_desc'    => 'Entre em contacto com a ConstrucaoMz para um orçamento gratuito.',
         ]);
     }
 
-    public function setLang($lang = 'pt')
+    public function setLang(string $lang = 'pt')
     {
+        if (!in_array($lang, ['pt', 'en'])) {
+            $lang = 'pt';
+        }
         session()->set('lang', $lang);
         return redirect()->back();
     }
