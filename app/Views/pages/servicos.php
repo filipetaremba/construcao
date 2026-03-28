@@ -12,13 +12,6 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
 
 $t = [
     'pt' => [
-        /* Hero */
-        'hero_label'    => 'O Que Fazemos',
-        'hero_title'    => 'SERVIÇOS DE CONSTRUÇÃO',
-        'hero_sub'      => 'Da fundação ao acabamento — obras residenciais, comerciais e industriais com rigor técnico, materiais premium e entrega dentro do prazo.',
-        'hero_cta'      => 'Pedir Orçamento Grátis',
-        'hero_cta2'     => 'Falar por WhatsApp',
-
         /* Breadcrumb */
         'bc_home'       => 'Início',
         'bc_page'       => 'Serviços',
@@ -170,11 +163,6 @@ $t = [
     ],
 
     'en' => [
-        'hero_label'    => 'What We Do',
-        'hero_title'    => 'CONSTRUCTION SERVICES',
-        'hero_sub'      => 'From foundation to finish — residential, commercial and industrial projects with technical rigour, premium materials and on-time delivery.',
-        'hero_cta'      => 'Get a Free Quote',
-        'hero_cta2'     => 'Chat on WhatsApp',
         'bc_home'       => 'Home',
         'bc_page'       => 'Services',
         'stats' => [
@@ -281,68 +269,6 @@ $l   = $t[$lang] ?? $t['pt'];
 $wa  = 'https://wa.me/258853592701?text=' . urlencode($lang === 'en' ? 'Hello, I would like to request a quote.' : 'Olá, gostaria de pedir um orçamento.');
 $tel = 'tel:+258853592701';
 ?>
-
-
-<!-- ════════ HERO ════════ -->
-<section class="relative min-h-[70vh] flex items-end overflow-hidden bg-navy pt-[54px]">
-
-  <!-- Background -->
-  <div class="absolute inset-0 z-0">
-    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1400&q=80&auto=format&fit=crop"
-         alt="" class="w-full h-full object-cover opacity-25" loading="eager">
-    <div class="absolute inset-0 bg-gradient-to-r from-navy via-navy/90 to-navy/60"></div>
-    <!-- Linha diagonal decorativa -->
-    <div class="absolute inset-0 overflow-hidden">
-      <div class="absolute top-0 right-0 w-2/5 h-full bg-gold opacity-[0.03] skew-x-[-6deg] translate-x-20"></div>
-    </div>
-  </div>
-
-  <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-8 w-full pb-16 pt-20">
-
-    <!-- Breadcrumb -->
-    <nav class="flex items-center gap-2 text-white/40 text-xs uppercase tracking-widest mb-8 animate-fadein" style="animation-delay:.05s">
-      <a href="<?= base_url('/') ?>" class="hover:text-gold transition"><?= esc($l['bc_home']) ?></a>
-      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-      <span class="text-gold"><?= esc($l['bc_page']) ?></span>
-    </nav>
-
-    <div class="max-w-3xl">
-      <p class="sec-label animate-fadein" style="animation-delay:.1s"><?= esc($l['hero_label']) ?></p>
-      <h1 class="font-display text-white leading-[.88] mb-6 animate-fadein"
-          style="font-size:clamp(2.8rem,7vw,6rem);animation-delay:.2s">
-        <?= esc($l['hero_title']) ?>
-      </h1>
-      <p class="text-white/60 text-base leading-relaxed mb-10 max-w-xl font-light animate-fadein"
-         style="animation-delay:.32s">
-        <?= esc($l['hero_sub']) ?>
-      </p>
-      <div class="flex flex-wrap gap-4 animate-fadein" style="animation-delay:.44s">
-        <a href="#orcamento" class="btn-gold">
-          <?= esc($l['hero_cta']) ?>
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-        <a href="<?= $wa ?>" target="_blank" rel="noopener" class="btn-outline flex items-center gap-2">
-          <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a8.4 8.4 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479s1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.109.549 4.09 1.508 5.815L.057 23.99l6.303-1.657A11.954 11.954 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.003-1.365l-.36-.214-3.718.976.99-3.62-.233-.374A9.818 9.818 0 0112 2.182c5.426 0 9.818 4.392 9.818 9.818S17.426 21.818 12 21.818z"/></svg>
-          <?= esc($l['hero_cta2']) ?>
-        </a>
-      </div>
-    </div>
-  </div>
-
-  <!-- Tira de stats -->
-  <div class="absolute bottom-0 left-0 right-0 z-10 animate-fadein" style="animation-delay:.6s">
-    <div class="max-w-6xl mx-auto px-6 md:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 bg-navy/95 backdrop-blur-sm border-t border-white/10 divide-x divide-white/10">
-        <?php foreach ($l['stats'] as $s) : ?>
-        <div class="px-4 md:px-6 py-4 text-center">
-          <div class="font-display text-gold text-2xl md:text-3xl"><?= $s['val'] ?></div>
-          <div class="text-white/40 text-[10px] uppercase tracking-widest mt-0.5"><?= esc($s['label']) ?></div>
-        </div>
-        <?php endforeach; ?>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ════════ INTRO ════════ -->
