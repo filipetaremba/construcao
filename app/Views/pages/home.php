@@ -106,11 +106,11 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
         </h2>
         <div class="gold-bar mb-8">
           <p class="text-gray-500 text-base leading-relaxed font-light">
-            A ConstrucaoMz nasceu na Beira com uma missão clara: entregar obras de excelência, no prazo e dentro do orçamento. Da fundação ao acabamento, controlamos cada fase com rigor técnico e transparência total.
+            A ConstrucaoMz nasceu na Beira com uma missão clara: entregar obras de excelência, no prazo e dentro do orçamento. Da fundação ao acabamento, controlamos cada fase com rigor técnico e transparência total. acabamento, controlamos cada fase com rigor técnico e transparência totalacabamentoo 
           </p>
         </div>
 
-        <div class="grid grid-cols-3 gap-4 mb-8">
+        <!-- <div class="grid grid-cols-3 gap-4 mb-8">
           <?php
           $badges = [
             ['icon' => '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>', 'label' => 'Licenciados'],
@@ -125,7 +125,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
             <div class="text-navy text-[10px] font-bold uppercase tracking-wide"><?= $b['label'] ?></div>
           </div>
           <?php endforeach; ?>
-        </div>
+        </div> -->
 
         <a href="<?= base_url('sobre') ?>" class="btn-gold">
           Saber Mais
