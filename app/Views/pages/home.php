@@ -317,25 +317,25 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
       <?php
       $testimonials = [
         [
-          'text' => 'A ConstrucaoMz superou todas as expectativas...',
+          'text' => 'A ConstrucaoMz superou todas as expectativas. Entregaram a nossa moradia antes do prazo e a qualidade é impecável. Recomendo a toda a gente.',
           'name' => 'Carlos Nhantumbo',
           'role' => 'Empresário · Beira',
           'rating' => 5,
-          'image' => 'assets/imagens/carlos.jpg'
+          'image' => 'assets/images/carlos.webp'
         ],
         [
-          'text' => 'Profissionalismo de nível mundial...',
+          'text' => 'Profissionalismo de nível mundial. Da fase de projecto à entrega final, comunicação perfeita e zero surpresas no orçamento. Parabéns à equipa!',
           'name' => 'Fátima Machava',
           'role' => 'Directora Financeira · Sofala',
           'rating' => 5,
-          'image' => 'assets/imagens/fatima.jpg'
+          'image' => 'assets/images/fatima.webp'
         ],
         [
-          'text' => 'Construímos o nosso armazém...',
+          'text' => 'Construímos o nosso armazém industrial com a ConstrucaoMz. Robustez, pontualidade e preço justo. Já contratámos para o segundo projecto.',
           'name' => 'João Pereira',
           'role' => 'Gestor de Logística · Beira',
           'rating' => 5,
-          'image' => 'assets/imagens/joao.jpg'
+          'image' => 'assets/images/joao.webp'
         ],
       ];
       foreach ($testimonials as $i => $t) : ?>
