@@ -128,4 +128,6 @@ _modules/*
 #node para tailwind
 node_modules/
 package.json
-package-lock.json
+package-lock.
+
+/app/Config/Email.php
