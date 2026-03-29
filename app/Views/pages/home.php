@@ -316,9 +316,27 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
     <div class="grid md:grid-cols-3 gap-6 reveal" id="testimonials-grid">
       <?php
       $testimonials = [
-        ['text' => 'A ConstrucaoMz superou todas as expectativas. Entregaram a nossa moradia antes do prazo e a qualidade é impecável. Recomendo a toda a gente.', 'name' => 'Carlos Nhantumbo', 'role' => 'Empresário · Beira',               'rating' => 5, 'avatar' => 'CN'],
-        ['text' => 'Profissionalismo de nível mundial. Da fase de projecto à entrega final, comunicação perfeita e zero surpresas no orçamento. Parabéns à equipa!', 'name' => 'Fátima Machava',   'role' => 'Directora Financeira · Sofala',   'rating' => 5, 'avatar' => 'FM'],
-        ['text' => 'Construímos o nosso armazém industrial com a ConstrucaoMz. Robustez, pontualidade e preço justo. Já contratámos para o segundo projecto.',      'name' => 'João Pereira',     'role' => 'Gestor de Logística · Beira',     'rating' => 5, 'avatar' => 'JP'],
+        [
+          'text' => 'A ConstrucaoMz superou todas as expectativas...',
+          'name' => 'Carlos Nhantumbo',
+          'role' => 'Empresário · Beira',
+          'rating' => 5,
+          'image' => 'assets/imagens/carlos.jpg'
+        ],
+        [
+          'text' => 'Profissionalismo de nível mundial...',
+          'name' => 'Fátima Machava',
+          'role' => 'Directora Financeira · Sofala',
+          'rating' => 5,
+          'image' => 'assets/imagens/fatima.jpg'
+        ],
+        [
+          'text' => 'Construímos o nosso armazém...',
+          'name' => 'João Pereira',
+          'role' => 'Gestor de Logística · Beira',
+          'rating' => 5,
+          'image' => 'assets/imagens/joao.jpg'
+        ],
       ];
       foreach ($testimonials as $i => $t) : ?>
       <div class="bg-light p-8 relative reveal" style="transition-delay:<?= $i * 0.12 ?>s">
@@ -334,8 +352,10 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
           "<?= esc($t['text']) ?>"
         </p>
         <div class="flex items-center gap-3 pt-4 border-t border-gray-200">
-          <div class="w-10 h-10 bg-navy flex items-center justify-center flex-shrink-0">
-            <span class="font-display text-gold text-sm"><?= $t['avatar'] ?></span>
+          <div class="w-10 h-10 flex-shrink-0 overflow-hidden rounded-full">
+            <img src="<?= base_url($t['image']) ?>" 
+                alt="<?= esc($t['name']) ?>" 
+                class="w-full h-full object-cover">
           </div>
           <div>
             <div class="font-bold text-navy text-sm"><?= esc($t['name']) ?></div>
