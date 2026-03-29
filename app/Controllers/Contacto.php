@@ -51,22 +51,24 @@ class Contacto extends BaseController
         $tipoLabel = $tiposLabel[$tipo] ?? $tipo;
 
         // --- Envio de email via SMTP ---
-        $emailService = \Config\Services::email();
+       $emailService = \Config\Services::email();
 
-        $emailService->setTo('empresa@exemplo.com');         // <-- email da empresa
-        $emailService->setFrom($email, $nome);
-        $emailService->setSubject('Novo Pedido de Orçamento — ' . $tipoLabel);
+            $emailService->setTo('empresa@exemplo.com'); // teu email real
+            $emailService->setFrom(env('email.fromEmail'), env('email.fromName'));
+            $emailService->setReplyTo($email, $nome);
 
-        $corpo  = "<h2>Novo pedido de orçamento</h2>";
-        $corpo .= "<p><strong>Nome:</strong> {$nome}</p>";
-        $corpo .= "<p><strong>Empresa:</strong> {$empresa}</p>";
-        $corpo .= "<p><strong>Email:</strong> {$email}</p>";
-        $corpo .= "<p><strong>Telefone:</strong> {$telefone}</p>";
-        $corpo .= "<p><strong>Tipo de Projecto:</strong> {$tipoLabel}</p>";
-        $corpo .= "<p><strong>Localização:</strong> {$localizacao}</p>";
-        $corpo .= "<hr><p><strong>Mensagem:</strong><br>" . nl2br(esc($mensagem)) . "</p>";
+            $emailService->setSubject('Novo Pedido de Orçamento — ' . $tipoLabel);
 
-        $emailService->setMessage($corpo);
+            $corpo  = "<h2>Novo pedido de orçamento</h2>";
+            $corpo .= "<p><strong>Nome:</strong> {$nome}</p>";
+            $corpo .= "<p><strong>Empresa:</strong> {$empresa}</p>";
+            $corpo .= "<p><strong>Email:</strong> {$email}</p>";
+            $corpo .= "<p><strong>Telefone:</strong> {$telefone}</p>";
+            $corpo .= "<p><strong>Tipo de Projecto:</strong> {$tipoLabel}</p>";
+            $corpo .= "<p><strong>Localização:</strong> {$localizacao}</p>";
+            $corpo .= "<hr><p><strong>Mensagem:</strong><br>" . nl2br(esc($mensagem)) . "</p>";
+
+            $emailService->setMessage($corpo);
 
         if (! $emailService->send()) {
             log_message('error', 'Falha ao enviar email de contacto: ' . $emailService->printDebugger(['headers']));

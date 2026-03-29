@@ -216,7 +216,7 @@ $tel = 'tel:+258853592701';
 
       <!-- Formulário -->
       <div class="lg:col-span-3 reveal">
-        <div class="bg-white border border-gray-100 p-8 md:p-10">
+        <div class="bg-navy border border-gray-100 p-8 md:p-10">
 
           <p class="sec-label"><?= esc($l['form_label']) ?></p>
           <h2 class="font-display text-navy mb-2" style="font-size:clamp(1.6rem,3vw,2.2rem)"><?= esc($l['form_title']) ?></h2>
@@ -228,7 +228,11 @@ $tel = 'tel:+258853592701';
             <?= esc($l['f_success']) ?>
           </div>
           <?php endif; ?>
-
+            <?php if (session()->has('errors')) : ?>
+              <?php foreach (session('errors') as $erro) : ?>
+                <p class="text-red-500 text-sm"><?= esc($erro) ?></p>
+              <?php endforeach; ?>
+            <?php endif; ?>
           <form action="<?= base_url('contacto/enviar') ?>" method="post" novalidate>
 
             <div class="grid sm:grid-cols-2 gap-5 mb-5">

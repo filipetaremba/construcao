@@ -131,3 +131,4 @@ package.json
 package-lock.
 
 /app/Config/Email.php
+/app/Config/Filters.php
