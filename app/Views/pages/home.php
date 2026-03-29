@@ -225,7 +225,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
 
     <div class="grid md:grid-cols-3 gap-4 reveal">
       <?php foreach ($projects as $p) : ?>
-      <a href="<?= base_url('projetos/' . $p['slug']) ?>"
+      <a href="<?= base_url('projetos/') ?>"
          class="proj-card <?= $p['col'] ?> relative overflow-hidden cursor-pointer group block"
          style="aspect-ratio:<?= $p['ratio'] ?>">
         <img src="<?= $p['img'] ?>" alt="<?= esc($p['alt']) ?>"
