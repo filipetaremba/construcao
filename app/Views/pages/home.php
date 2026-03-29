@@ -454,7 +454,7 @@ $lang = $lang ?? get_cookie('lang') ?? 'pt';
           <?php endif; ?>
 
           <form action="<?= base_url('contacto/enviar') ?>" method="post" id="home-quote-form" novalidate>
-
+           <input type="hidden" name="redirect_back" value="<?= base_url('/') ?>#orcamento">
             <div class="grid sm:grid-cols-2 gap-5 mb-5">
               <div>
                 <label class="field-label">Nome *</label>
