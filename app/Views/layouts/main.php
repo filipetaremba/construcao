@@ -25,7 +25,33 @@ $meta_desc    = $meta_desc    ?? 'Construção residencial, comercial e industri
   <meta name="description" content="<?= esc($meta_desc) ?>">
   <title><?= esc($title) ?></title>
 
-  <link rel="icon" type="image/png" href="<?= base_url('assets/images/favicon.png') ?>">
+  <!-- ════ FAVICON & ÍCONES ════ -->
+  <link rel="icon"             type="image/png" href="<?= base_url('assets/images/icon.png') ?>">
+  <link rel="shortcut icon"    type="image/png" href="<?= base_url('assets/images/icon.png') ?>">
+  <link rel="apple-touch-icon"                   href="<?= base_url('assets/images/icon.png') ?>">
+
+  <!-- ════ SEO BÁSICO ════ -->
+  <meta name="robots"      content="index, follow">
+  <meta name="author"      content="ConstrucaoMz">
+  <meta name="theme-color" content="#0D1F4E">
+  <link rel="canonical"    href="<?= base_url($current_page) ?>">
+
+  <!-- ════ OPEN GRAPH (Facebook, WhatsApp, LinkedIn…) ════ -->
+  <meta property="og:type"         content="website">
+  <meta property="og:url"          content="<?= base_url($current_page) ?>">
+  <meta property="og:title"        content="<?= esc($title) ?>">
+  <meta property="og:description"  content="<?= esc($meta_desc) ?>">
+  <meta property="og:image"        content="<?= base_url('assets/images/icon.jpg') ?>">
+  <meta property="og:image:width"  content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale"       content="<?= $lang === 'pt' ? 'pt_MZ' : 'en_US' ?>">
+  <meta property="og:site_name"    content="ConstrucaoMz">
+
+  <!-- ════ TWITTER CARD ════ -->
+  <meta name="twitter:card"        content="summary_large_image">
+  <meta name="twitter:title"       content="<?= esc($title) ?>">
+  <meta name="twitter:description" content="<?= esc($meta_desc) ?>">
+  <meta name="twitter:image"       content="<?= base_url('assets/images/icon.jpg') ?>">
 
   <!-- Fontes -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
