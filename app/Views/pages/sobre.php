@@ -181,11 +181,11 @@ $tel = 'tel:+258853592701';
 
   <div class="relative z-10 max-w-6xl mx-auto px-6 md:px-8 w-full pt-16 pb-10">
 
-    <nav class="flex items-center gap-2 text-white/40 text-xs uppercase tracking-widest mb-8 animate-fadein" style="animation-delay:.05s">
+    <!-- <nav class="flex items-center gap-2 text-white/40 text-xs uppercase tracking-widest mb-8 animate-fadein" style="animation-delay:.05s">
       <a href="<?= base_url('/') ?>" class="hover:text-gold transition"><?= esc($l['bc_home']) ?></a>
       <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
       <span class="text-gold"><?= esc($l['bc_page']) ?></span>
-    </nav>
+    </nav> -->
 
     <div class="mb-12 animate-fadein" style="animation-delay:.15s">
       <p class="sec-label"><?= esc($l['page_label']) ?></p>
@@ -196,7 +196,7 @@ $tel = 'tel:+258853592701';
   </div>
 
   <!-- Stats -->
-  <div class="relative z-10">
+  <!-- <div class="relative z-10">
     <div class="max-w-6xl mx-auto px-6 md:px-8">
       <div class="grid grid-cols-2 md:grid-cols-4 bg-navy/95 backdrop-blur-sm border-t border-white/10 divide-x divide-white/10">
         <?php foreach ($l['stats'] as $s) : ?>
@@ -207,7 +207,7 @@ $tel = 'tel:+258853592701';
         <?php endforeach; ?>
       </div>
     </div>
-  </div>
+  </div> -->
 </section>
 
 
