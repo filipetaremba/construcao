@@ -53,38 +53,16 @@ $meta_desc    = $meta_desc    ?? 'Construção residencial, comercial e industri
   <meta name="twitter:description" content="<?= esc($meta_desc) ?>">
   <meta name="twitter:image"       content="<?= base_url('assets/images/icon.jpg') ?>">
 
-  <!-- Fontes -->
+  <!-- ════ FONTES ════ -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Tailwind CDN (Play CDN — trocar por build em produção) -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            navy:    '#0D1F4E',
-            gold:    '#E8A020',
-            'gold-dark': '#c98a18',
-            light:   '#F5F5F0',
-            steel:   '#6B7A99',
-            primary: '#0D1F4E',
-            accent:  '#E8A020',
-            'accent-dark': '#c98a18',
-            secondary: '#162c6e',
-          },
-          fontFamily: {
-            display: ['"Barlow Condensed"', 'sans-serif'],
-            body:    ['"Inter"', 'sans-serif'],
-          },
-        }
-      }
-    }
-  </script>
+  <!-- ════ TAILWIND (build de produção) ════ -->
+  <link rel="stylesheet" href="<?= base_url('assets/css/main.css') ?>">
 
-  <!-- Estilos globais (componentes reutilizáveis que Tailwind não cobre inline) -->
+  <!-- ════ ESTILOS GLOBAIS ════ -->
   <style>
     /* ── Base ── */
     body { font-family: 'Inter', sans-serif; }
